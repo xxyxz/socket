@@ -90,7 +90,7 @@ begin
       if cmd[2] <> FServerIp then
         SendMessage('MSG', cmd[1], cmd[2], cmd[3])
       else
-        InsertIntoConversation(cmd[1], cmd[3]);
+        InsertIntoConversation;
     end;
   except
     on e: Exception do
