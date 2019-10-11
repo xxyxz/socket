@@ -11,7 +11,9 @@ uses
   cxSplitter, cxPC, cxGridLevel, cxGridCustomTableView, cxGridTableView,
   cxGridBandedTableView, cxClasses, cxGridCustomView, cxGrid, Vcl.ExtCtrls,
   IdAntiFreezeBase, Vcl.IdAntiFreeze, IdBaseComponent, IdComponent,
-  IdTCPConnection, IdTCPClient, Tools, IdIntercept, Conversation;
+  IdTCPConnection, IdTCPClient, Tools, IdIntercept, Conversation,
+  cxImageComboBox, cxCalendar, cxContainer, Vcl.Menus, Vcl.StdCtrls, cxButtons,
+  cxLabel, dxGDIPlusClasses, cxImage;
 
 type
   TfrmClientChatRoom = class(TfrmChatRoom)
@@ -49,7 +51,7 @@ implementation
 
 {$R *.dfm}
 
-uses Login;
+uses Login, StrUtils;
 
 procedure TfrmClientChatRoom.Connect;
 var
@@ -96,6 +98,7 @@ begin
     repeat
       try
         AText := IdTCPClient1.IOHandler.ReadLn;
+        AText := AText.Replace(#16, #13#10);
         cmd.DelimitedText:= AText;
         if cmd.Count > 0 then
         begin
@@ -128,7 +131,6 @@ end;
 
 procedure TClientThread.Terminate(Sender: TObject);
 begin
-  ShowMessage('Thead is terminated');
   frmClientChatRoom.Disconnect;
 end;
 
@@ -202,7 +204,7 @@ end;
 
 procedure TfrmClientChatRoom.Send(AConversation : TfrmConversation);
 begin
-  IdTCPClient1.IOHandler.WriteLn('MSG,' + FIP + ',' + AConversation.Ip + ',' +  AConversation.LastMessage);
+  IdTCPClient1.IOHandler.WriteLn('MSG,' + FIP + ',' + AConversation.Ip + ',' +  AConversation.LastMessageSingleLine);
 end;
 
 procedure TfrmClientChatRoom.ProcessIncomingMsg;
@@ -217,7 +219,7 @@ begin
       AddConversation(AConnection);
     AMessage := '';
     for I := 3 to cmd.Count -1 do
-      AMessage := AMessage + ',' +cmd[I];
+      AMessage := AMessage + ifthen(AMessage <> '', ',') +cmd[I];
     AConnection.Conversation.Receive(AMessage);
   end;
 end;

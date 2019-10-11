@@ -19,6 +19,7 @@ type
     procedure bLoginClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormShow(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   public
 
   end;
@@ -45,6 +46,7 @@ begin
       try
         //changed connectTimeout property
         frmClientChatRoom.UserName := eNick.Text;
+        frmClientChatRoom.lblUser.Caption := eNick.Text;
         IdTCPClient1.Connect;
         Self.Close;
       except
@@ -65,6 +67,11 @@ end;
 procedure TfrmLogin.FormShow(Sender: TObject);
 begin
   bLogin.SetFocus;
+end;
+
+procedure TfrmLogin.FormCreate(Sender: TObject);
+begin
+  eNick.Text := GetEnvironmentVariable('USERNAME');
 end;
 
 end.

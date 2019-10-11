@@ -12,7 +12,8 @@ uses
   cxDataControllerConditionalFormattingRulesManagerDialog, cxLabel, cxGridLevel,
   cxGridCustomTableView, cxGridTableView, cxGridBandedTableView, cxClasses,
   cxGridCustomView, cxGrid, IdTCPConnection, System.Generics.Collections,
-  dxBarBuiltInMenu, cxPC, cxSplitter, Conversation;
+  dxBarBuiltInMenu, cxPC, cxSplitter, Conversation, cxImageComboBox, cxCalendar,
+  cxContainer, Vcl.Menus, Vcl.StdCtrls, cxButtons, dxGDIPlusClasses, cxImage;
 type
   TConnection = class
     IP         : String;
@@ -36,6 +37,12 @@ type
     PageControl: TcxPageControl;
     pnlBottom: TPanel;
     splitterBottom: TcxSplitter;
+    vwUsersIMAGE: TcxGridBandedColumn;
+    Panel1: TPanel;
+    cxImage: TcxImage;
+    lblUser: TcxLabel;
+    btnMore: TcxButton;
+    cxLabel1: TcxLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure vwUsersSelectionChanged(Sender: TcxCustomGridTableView);
@@ -100,7 +107,6 @@ Var
 begin
   if vwUsers.Controller.SelectedRecordCount > 0 then
   begin
-    AID := vwUsers.Controller.SelectedRecords[0].Values[vwUsersID.Index];
     AIP := vwUsers.Controller.SelectedRecords[0].Values[vwUsersIP.Index];
 
     AConnection := FConnectionDict[AIP];

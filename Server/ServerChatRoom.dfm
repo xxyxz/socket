@@ -2,6 +2,15 @@ inherited frmServerChatRoom: TfrmServerChatRoom
   Caption = 'frmServerChatRoom'
   PixelsPerInch = 96
   TextHeight = 13
+  inherited pnlMain: TPanel
+    inherited pnlLeft: TPanel
+      inherited Panel1: TPanel
+        inherited lblUser: TcxLabel
+          Style.IsFontAssigned = True
+        end
+      end
+    end
+  end
   object IdAntiFreeze1: TIdAntiFreeze
     Left = 552
     Top = 24

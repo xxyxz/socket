@@ -12,7 +12,8 @@ uses
   cxGridTableView, cxGridDBTableView, cxGrid, dxmdaset, cxExtEditRepositoryItems,
   cxContainer, cxLabel, cxGroupBox, cxImageComboBox, System.ImageList,
   Vcl.ImgList, cxImageList, cxTextEdit, cxMemo, cxGridBandedTableView,
-  cxGridDBBandedTableView, Vcl.Menus, Vcl.StdCtrls, cxButtons, cxBlobEdit;
+  cxGridDBBandedTableView, Vcl.Menus, Vcl.StdCtrls, cxButtons, cxBlobEdit,
+  cxImage;
 
 const
   FRAME_INACTIVE_COLOR = $5C5C5C;
@@ -55,6 +56,8 @@ type
     mdDataDATE: TDateTimeField;
     btnSend: TcxButton;
     ImageList24x24: TcxImageList;
+    cxStyle1: TcxStyle;
+    cxStyle2: TcxStyle;
     procedure FormCreate(Sender: TObject);
     procedure vwMessagesMESSAGECustomDrawCell(
       Sender: TcxCustomGridTableView; ACanvas: TcxCanvas;
@@ -95,10 +98,12 @@ type
     procedure CalculateMemoHeight(AAdditionalLine : Boolean = False);
     procedure AppendRecord(const Values: array of const);
     procedure Send;
+    function GetLastMessageSingleLine : String;
   public
     procedure Receive(const AMessage : String);
     property AfterSend : TConvProc read FAfterSend write FAfterSend;
     property LastMessage : String read FLastMessage write FLastMessage;
+    property LastMessageSingleLine : String read GetLastMessageSingleLine;
     property Ip : String read FIp write FIp;
   end;
 
@@ -469,6 +474,11 @@ begin
     if Assigned(FAfterSend) then
       FAfterSend(self);
   end;
+end;
+
+function TfrmConversation.GetLastMessageSingleLine: String;
+begin
+  Result := LastMessage.Replace(sLineBreak, #16);
 end;
 
 end.

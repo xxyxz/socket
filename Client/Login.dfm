@@ -3,8 +3,8 @@ object frmLogin: TfrmLogin
   Top = 262
   BorderStyle = bsDialog
   Caption = 'Connect'
-  ClientHeight = 112
-  ClientWidth = 228
+  ClientHeight = 141
+  ClientWidth = 194
   Color = 16776178
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -15,6 +15,7 @@ object frmLogin: TfrmLogin
   OldCreateOrder = False
   Position = poScreenCenter
   OnClose = FormClose
+  OnCreate = FormCreate
   OnShow = FormShow
   PixelsPerInch = 96
   TextHeight = 13
@@ -26,10 +27,10 @@ object frmLogin: TfrmLogin
     ParentBackground = False
     ParentColor = False
     Style.BorderStyle = ebsNone
-    Style.Color = clSkyBlue
+    Style.Color = 16776178
     TabOrder = 0
-    Height = 112
-    Width = 228
+    Height = 141
+    Width = 194
     object Label1: TLabel
       Left = 16
       Top = 16
@@ -40,32 +41,32 @@ object frmLogin: TfrmLogin
     end
     object Label2: TLabel
       Left = 16
-      Top = 56
+      Top = 53
       Width = 22
       Height = 13
-      Caption = 'Nick'
+      Caption = 'User'
       Transparent = True
     end
     object eIp: TEdit
-      Left = 16
-      Top = 32
+      Left = 48
+      Top = 13
       Width = 121
       Height = 21
       TabOrder = 0
       Text = '10.1.3.78'
     end
     object eNick: TEdit
-      Left = 16
-      Top = 72
+      Left = 48
+      Top = 50
       Width = 121
       Height = 21
       TabOrder = 1
       Text = 'User'
     end
     object bLogin: TcxButton
-      Left = 144
-      Top = 68
-      Width = 75
+      Left = 16
+      Top = 92
+      Width = 153
       Height = 29
       Caption = 'Connect'
       TabOrder = 2

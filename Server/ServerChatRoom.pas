@@ -11,7 +11,9 @@ uses
   IdContext, IdAntiFreezeBase, Vcl.IdAntiFreeze, IdBaseComponent, IdComponent,
   IdCustomTCPServer, IdTCPServer, cxSplitter, cxPC, cxGridLevel,
   cxGridCustomTableView, cxGridTableView, cxGridBandedTableView, cxClasses,
-  cxGridCustomView, cxGrid, Vcl.ExtCtrls, Conversation, Tools;
+  cxGridCustomView, cxGrid, Vcl.ExtCtrls, Conversation, Tools, cxImageComboBox,
+  cxCalendar, cxContainer, Vcl.Menus, Vcl.StdCtrls, cxButtons, cxLabel,
+  dxGDIPlusClasses, cxImage;
 
 const
   UM_CONNECTED = WM_USER + 10000;
@@ -49,7 +51,7 @@ implementation
 
 {$R *.dfm}
 
-uses IdStack;
+uses IdStack, StrUtils;
 
 function GetIPAddress:String;
 begin
@@ -111,6 +113,7 @@ begin
   vwUsers.DataController.Values[vwUsers.DataController.RecordCount -1, vwUsersID.Index] := FIdCounter;
   vwUsers.DataController.Values[vwUsers.DataController.RecordCount -1, vwUsersUSER_NAME.Index] := AConnection.User;
   vwUsers.DataController.Values[vwUsers.DataController.RecordCount -1, vwUsersIP.Index] := AConnection.IP;
+
   vwUsers.DataController.Post;
 end;
 
@@ -161,8 +164,12 @@ begin
 end;
 
 procedure TfrmServerChatRoom.IdTCPServer1Execute(AContext: TIdContext);
+Var
+  AText : String;
 begin
-  cmd.DelimitedText := AContext.Connection.IOHandler.ReadLn;
+  AText := AContext.Connection.IOHandler.ReadLn;
+  AText := AText.Replace(#16, #13#10);
+  cmd.DelimitedText := AText;
   PostMessage(Handle, UM_EXECUTE, Integer(Pointer(cmd)), 0);
 end;
 
@@ -177,7 +184,7 @@ end;
 
 procedure TfrmServerChatRoom.DoAfterSend(AConversation : TfrmConversation);
 begin
-  SendMessage('MSG', FServerIp, AConversation.IP, AConversation.LastMessage);
+  SendMessage('MSG', FServerIp, AConversation.IP, AConversation.LastMessageSingleLine);
 end;
 
 procedure TfrmServerChatRoom.FormCreate(Sender: TObject);
@@ -213,7 +220,7 @@ begin
       AddConversation(AConnection);
     AMessage := '';
     for I := 3 to cmd.Count -1 do
-      AMessage := AMessage  + ',' + cmd[I];
+      AMessage := AMessage  + ifthen(AMessage <> '', ',') + cmd[I];
     AConnection.Conversation.Receive(AMessage);
   end;
 end;
