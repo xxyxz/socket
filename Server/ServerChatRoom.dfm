@@ -4,9 +4,16 @@ inherited frmServerChatRoom: TfrmServerChatRoom
   TextHeight = 13
   inherited pnlMain: TPanel
     inherited pnlLeft: TPanel
+      BevelEdges = [beRight]
+      BevelKind = bkFlat
+      inherited grdUsers: TcxGrid
+        Width = 294
+        TabOrder = 2
+      end
       inherited Panel1: TPanel
-        inherited lblUser: TcxLabel
-          Style.IsFontAssigned = True
+        Width = 295
+        inherited btnMore: TcxButton
+          Left = 254
         end
       end
     end

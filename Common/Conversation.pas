@@ -58,6 +58,8 @@ type
     ImageList24x24: TcxImageList;
     cxStyle1: TcxStyle;
     cxStyle2: TcxStyle;
+    cxStyle3: TcxStyle;
+    cxStyle4: TcxStyle;
     procedure FormCreate(Sender: TObject);
     procedure vwMessagesMESSAGECustomDrawCell(
       Sender: TcxCustomGridTableView; ACanvas: TcxCanvas;

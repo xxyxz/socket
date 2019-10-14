@@ -22,7 +22,7 @@ object frmChatRoom: TfrmChatRoom
     Height = 41
     Align = alTop
     BevelOuter = bvNone
-    Color = clWhite
+    Color = 16382457
     ParentBackground = False
     TabOrder = 0
     Visible = False
@@ -44,7 +44,7 @@ object frmChatRoom: TfrmChatRoom
       Height = 540
       Align = alLeft
       BevelOuter = bvNone
-      Color = clWhite
+      Color = 16382457
       ParentBackground = False
       TabOrder = 0
       object grdUsers: TcxGrid
@@ -105,13 +105,16 @@ object frmChatRoom: TfrmChatRoom
           OptionsView.Header = False
           OptionsView.HeaderHeight = 50
           OptionsView.BandHeaders = False
+          Styles.Background = frmConversation.cxStyle3
+          Styles.Content = frmConversation.cxStyle4
+          Styles.Inactive = frmConversation.cxStyle4
           Bands = <
             item
               Caption = 'Reset Group'
-              Width = 41
+              Width = 46
             end
             item
-              Width = 96
+              Width = 250
             end>
           object vwUsersID: TcxGridBandedColumn
             Caption = 'ID'
@@ -151,6 +154,7 @@ object frmChatRoom: TfrmChatRoom
                 ImageIndex = 0
               end>
             Properties.ReadOnly = True
+            Width = 47
             Position.BandIndex = 0
             Position.ColIndex = 0
             Position.RowIndex = 0
@@ -175,7 +179,7 @@ object frmChatRoom: TfrmChatRoom
         BevelEdges = [beBottom]
         BevelKind = bkTile
         BevelOuter = bvNone
-        Color = clWhite
+        Color = 16382457
         ParentBackground = False
         TabOrder = 1
         object cxImage: TcxImage
@@ -217,6 +221,7 @@ object frmChatRoom: TfrmChatRoom
             7EA41D7D2B355E1EC616DBDB97C42C1C6F40BD9D47BA86A65756A6874E1EDA01
             B30E291178CC115571850000000049454E44AE426082}
           Properties.ReadOnly = True
+          Properties.ShowFocusRect = False
           Style.BorderStyle = ebsNone
           Style.HotTrack = False
           TabOrder = 0
@@ -294,7 +299,7 @@ object frmChatRoom: TfrmChatRoom
     Height = 166
     Align = alBottom
     BevelOuter = bvNone
-    Color = clWhite
+    Color = 16382457
     ParentBackground = False
     TabOrder = 2
   end
@@ -306,7 +311,7 @@ object frmChatRoom: TfrmChatRoom
     HotZoneClassName = 'TcxXPTaskBarStyle'
     AlignSplitter = salTop
     Control = pnlBottom
-    Color = clWhite
+    Color = 16382457
     ParentColor = False
     Visible = False
   end

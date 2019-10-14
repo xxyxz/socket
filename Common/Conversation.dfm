@@ -350,6 +350,14 @@ object frmConversation: TfrmConversation
       AssignedValues = [svColor]
       Color = 16382457
     end
+    object cxStyle3: TcxStyle
+      AssignedValues = [svColor]
+      Color = 16382457
+    end
+    object cxStyle4: TcxStyle
+      AssignedValues = [svColor]
+      Color = 16382457
+    end
   end
   object ImageList32x32: TcxImageList
     SourceDPI = 96
